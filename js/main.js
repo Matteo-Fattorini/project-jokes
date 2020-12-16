@@ -5,17 +5,16 @@ const app = new Vue({
     joke: "",
   },
   methods: {
-    getJoke() {
-      axios
+    async getJoke() {
+      let res = await axios
         .get("https://icanhazdadjoke.com/", {
           headers: {
             Accept: "application/json",
           },
         })
-        .then((result) => {
-          this.joke = (result.data.joke);
-        });
-    },
+      
+      this.joke = res.data.joke
+    }
     },
   
     mounted() {
